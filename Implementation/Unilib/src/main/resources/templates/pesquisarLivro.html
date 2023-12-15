@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilib Web Test</title>
+    <link rel="stylesheet" href="/css/pesquisarLivroStyle.css">
+</head>
+<body>
+<div id="container">
+    <div id="listarLivros" class="container-section">
+        <h2>Listar Livros</h2>
+        <div>
+            <button onclick="listarOuOcultarLivros()">Listar Livros</button>
+            <button id="ocultarLivrosBtn" style="display: none;" onclick="toggleListarLivros()">Ocultar Livros</button>
+        </div>
+        <div id="livros-lista"></div>
+    </div>
+
+    <div id="adicionarLivro" class="container-section">
+        <h2>Adicionar Livro</h2>
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" required>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" required>
+        <button onclick="adicionarLivro()">Adicionar Livro</button>
+    </div>
+
+    <div id="pesquisarLivro" class="container-section">
+        <h2>Pesquisar Livro</h2>
+        <label for="nomeLivro">Nome do Livro:</label>
+        <input type="text" id="nomeLivro" required>
+        <button onclick="pesquisarLivroPorNome()">Pesquisar Livro</button>
+        <div id="livros-por-nome"></div>
+    </div>
+</div>
+
+<script>
+    function toggleListarLivros() {
+        const livrosLista = document.getElementById('livros-lista');
+        const ocultarLivrosBtn = document.getElementById('ocultarLivrosBtn');
+
+        if (livrosLista.style.display === 'none' || livrosLista.innerHTML === '') {
+            fetch('/livros')
+                .then(response => response.json())
+                .then(data => {
+                    livrosLista.innerHTML = '<ul>' +
+                        data.map(livro => `<li>${livro.titulo} - ${livro.autor}</li>`).join('') +
+                        '</ul>';
+                });
+
+            // Exibe a seção de ocultar livros
+            livrosLista.style.display = 'block';
+            ocultarLivrosBtn.style.display = 'block';
+        } else {
+            // Oculta a seção de listar livros
+            livrosLista.innerHTML = '';
+            livrosLista.style.display = 'none';
+            ocultarLivrosBtn.style.display = 'none';
+        }
+    }
+
+    function listarOuOcultarLivros() {
+        toggleListarLivros();
+    }
+
+    function adicionarLivro() {
+        const titulo = document.getElementById('titulo').value;
+        const autor = document.getElementById('autor').value;
+
+        fetch('/livros', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ titulo, autor }),
+        })
+            .then(() => {
+                const livrosLista = document.getElementById('livros-lista');
+                if (livrosLista.style.display === 'block') {
+                    toggleListarLivros();
+                }
+            });
+    }
+
+    function pesquisarLivroPorNome() {
+        const nomeLivro = document.getElementById('nomeLivro').value;
+
+        fetch(`/livros/pesquisarPorNome/${nomeLivro}`)
+            .then(response => response.json())
+            .then(data => {
+                const livrosPorNome = document.getElementById('livros-por-nome');
+                livrosPorNome.innerHTML = '<ul>' +
+                    data.map(livro => `<li>${livro.titulo} - ${livro.autor}</li>`).join('') +
+                    '</ul>';
+            });
+    }
+</script>
+</body>
+</html>

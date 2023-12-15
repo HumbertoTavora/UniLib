@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/loginStyle.css">
+</head>
+<body>
+<div class="container">
+  <h1>Login</h1>
+  <p th:if="${error}" class="error-message" th:text="${error}"></p>
+  <form action="/login" method="post">
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">Login</button>
+  </form>
+  <p>Ainda não possui uma conta?
+    <a href="/cadastro">Cadastrar novo usuário</a>
+  </p>
+  <a href="/login/oauth2/authorization/google">Login com Google</a>
+</div>
+</body>
+</html>
