@@ -1,14 +1,17 @@
-package com.example.unilib.service;
+package com.example.unilib.model.controlador;
 
-import com.example.unilib.model.Livro;
-import com.example.unilib.repository.ArquivoLivroRepository;
+import com.example.unilib.model.entity.Livro;
+import com.example.unilib.model.repository.ArquivoLivroRepository;
+import com.example.unilib.model.repository.LivroRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class LivroService {
-    private final ArquivoLivroRepository livroRepository;
+@Service
+public class ControladorLivros {
+    private final LivroRepository livroRepository;
 
-    public LivroService(ArquivoLivroRepository livroRepository) {
+    public ControladorLivros(ArquivoLivroRepository livroRepository) {
         this.livroRepository = livroRepository;
     }
 
@@ -21,9 +24,7 @@ public class LivroService {
     }
 
     public List<Livro> pesquisarLivrosPorNome(String titulo) {
-        System.out.println("Pesquisando livros por nome: " + titulo);
         List<Livro> livros = livroRepository.pesquisarPorNome(titulo);
-        System.out.println("Livros encontrados: " + livros);
         return livros;
     }
 

@@ -21,6 +21,8 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 10px;
+    width: 30%; /* Defina a largura desejada para cada seção */
+    box-sizing: border-box; /* Garante que padding não aumenta a largura total */
 }
 
 h1, h2 {
@@ -33,6 +35,7 @@ button {
     padding: 8px 16px;
     border: none;
     cursor: pointer;
+    margin-top: 8px;
 }
 
 label {
@@ -42,7 +45,7 @@ label {
 input {
     margin-bottom: 8px;
     padding: 8px;
-    width: 200px;
+    width: calc(100% - 16px);
 }
 
 ul {

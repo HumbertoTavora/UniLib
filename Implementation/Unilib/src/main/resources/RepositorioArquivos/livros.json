@@ -1,0 +1,85 @@
+[
+  {
+    "id": 4,
+    "titulo": "Cálculo Numérico",
+    "autor": [
+      "Richard L. Burden",
+      "J. Douglas Faires"
+    ],
+    "palavraChave": [
+      "Cálculo Numérico",
+      "Matemática"
+    ],
+    "qtdDisponivel": 12,
+    "ISBN": "978-8521615023"
+  },
+  {
+    "id": 3,
+    "titulo": "Física para Cientistas e Engenheiros",
+    "autor": [
+      "Paul A. Tipler",
+      "Gene Mosca"
+    ],
+    "palavraChave": [
+      "Física",
+      "Ciência",
+      "Engenharia"
+    ],
+    "qtdDisponivel": 5,
+    "ISBN": "978-8522102428"
+  },
+  {
+    "id": 5,
+    "titulo": "Estatística Básica",
+    "autor": [
+      "Bussab",
+      "Morettin"
+    ],
+    "palavraChave": [
+      "Estatística",
+      "Matemática"
+    ],
+    "qtdDisponivel": 7,
+    "ISBN": "978-8521614453"
+  },
+  {
+    "id": 1,
+    "titulo": "Cálculo - Volume 1",
+    "autor": [
+      "James Stewart"
+    ],
+    "palavraChave": [
+      "Cálculo",
+      "Matemática"
+    ],
+    "qtdDisponivel": 10,
+    "ISBN": "978-8522103999"
+  },
+  {
+    "id": 2,
+    "titulo": "Álgebra Linear com Aplicações",
+    "autor": [
+      "Howard Anton",
+      "Chris Rorres"
+    ],
+    "palavraChave": [
+      "Álgebra Linear",
+      "Matemática"
+    ],
+    "qtdDisponivel": 8,
+    "ISBN": "978-8576051361"
+  },
+  {
+    "id": 7,
+    "titulo": "Clean Code",
+    "autor": [
+      "Uncle Bob"
+    ],
+    "palavraChave": [
+      "Programimg",
+      "Agile"
+    ],
+    "qtdDisponivel": 2,
+    "ISBN": "978-0132350884"
+  }
+]

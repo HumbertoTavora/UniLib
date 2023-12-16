@@ -1,7 +1,7 @@
 package com.example.unilib.controller;
 
-import com.example.unilib.model.Livro;
-import com.example.unilib.service.LivroService;
+import com.example.unilib.model.entity.Livro;
+import com.example.unilib.model.controlador.ControladorLivros;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,27 +9,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
-    private final LivroService livroService;
+    private final ControladorLivros controladorLivros;
 
-    public LivroController(LivroService livroService) {
-        this.livroService = livroService;
+    public LivroController(ControladorLivros controladorLivros) {
+        this.controladorLivros = controladorLivros;
     }
 
     @GetMapping
     public List<Livro> listarLivros() {
-        return livroService.listarLivros();
+        return controladorLivros.listarLivros();
     }
 
     @PostMapping
     public void salvarLivro(@RequestBody Livro livro) {
-        livroService.salvarLivro(livro);
+        controladorLivros.salvarLivro(livro);
     }
 
 
 
     @GetMapping("/pesquisarPorNome/{nome}")
     public List<Livro> pesquisarLivrosPorNome(@PathVariable String nome) {
-        return livroService.pesquisarLivrosPorNome(nome);
+        return controladorLivros.pesquisarLivrosPorNome(nome);
     }
 
 }

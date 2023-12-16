@@ -1,6 +1,6 @@
-package com.example.unilib.repository;
+package com.example.unilib.model.repository;
 
-import com.example.unilib.model.Usuario;
+import com.example.unilib.model.entity.Usuario;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -13,16 +13,16 @@ import java.util.Optional;
 @Component
 public class ArquivoUsuarioRepository implements UsuarioRepository {
 
-    private static final String FILE_PATH = "src/main/resources/usuarios.json";
+    private static final String FILE_PATH = "src/main/resources/RepositorioArquivos/usuarios.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Optional<Usuario> findByUsername(String username) {
+    public Optional<Usuario> findByEmail(String username) {
         try {
             List<Usuario> usuarios = objectMapper.readValue(new File(FILE_PATH), new TypeReference<List<Usuario>>() {});
 
             return usuarios.stream()
-                    .filter(usuario -> usuario.getUsername().equals(username))
+                    .filter(usuario -> usuario.getEmail().equals(username))
                     .findFirst();
         } catch (IOException e) {
             e.printStackTrace();
