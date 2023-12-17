@@ -17,12 +17,12 @@ body {
 
 .container-section {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     margin: 10px;
-    width: 30%; /* Defina a largura desejada para cada seção */
-    box-sizing: border-box; /* Garante que padding não aumenta a largura total */
+    width: 400px;
+    box-sizing: border-box;
 }
 
 h1, h2 {

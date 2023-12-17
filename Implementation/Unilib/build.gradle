@@ -23,6 +23,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'mysql:mysql-connector-java:8.0.23'
+    implementation 'org.json:json:20210307'
+    implementation 'org.springframework.social:spring-social-google:1.0.0.RELEASE'
+    implementation 'com.google.api-client:google-api-client:1.31.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
 
 }
 

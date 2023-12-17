@@ -1,11 +1,13 @@
 package com.example.unilib.model.repository;
 
+import com.example.unilib.model.entity.Livro;
 import com.example.unilib.model.entity.Usuario;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,6 +17,9 @@ public class BDRUsuarioRepository implements UsuarioRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public List<Usuario> listarUsuarios() {
+        return entityManager.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
+    }
     @Override
     public Optional<Usuario> findByEmail(String email) {
         Usuario usuario = entityManager.createQuery("SELECT u FROM Usuario u WHERE u.email = :email", Usuario.class)

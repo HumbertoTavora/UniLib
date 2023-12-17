@@ -1,5 +1,6 @@
 package com.example.unilib.model.repository;
 
+import com.example.unilib.model.entity.Livro;
 import com.example.unilib.model.entity.Usuario;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,9 +9,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 @Repository
@@ -20,6 +21,21 @@ public class ArquivoUsuarioRepository implements UsuarioRepository {
     private static final String FILE_PATH = "src/main/resources/RepositorioArquivos/usuarios.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    public List<Usuario> listarUsuarios() {
+        try {
+            List<Usuario> usuarios = objectMapper.readValue(new File(FILE_PATH), new TypeReference<List<Usuario>>() {});
+
+            Map<String, Usuario> usuarioMap = usuarios.stream()
+                    .collect(Collectors.toMap(Usuario::getEmail, Function.identity(), (existing, replacement) -> existing));
+
+            List<Usuario> usuariosSemDuplicatas = new ArrayList<>(usuarioMap.values());
+
+            return usuariosSemDuplicatas;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
     @Override
     public Optional<Usuario> findByEmail(String username) {
         try {
