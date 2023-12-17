@@ -30,7 +30,7 @@ public class ControladorUsuarios {
     public ModelAndView cadastrarUsuario(Usuario usuario) {
         ModelAndView modelAndView = new ModelAndView("cadastro");
 
-        if (usuario.getEmail() != null && usuario.getSenha() != null && usuario.getIdUniversitario() != null && usuario.getNome() != null) {
+        if (usuario.getEmail() != null && usuario.getSenha() != null && usuario.getIdUniversitario() != 0 && usuario.getNome() != null) {
             if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
                 modelAndView.addObject("error", "Usuário já cadastrado");
             } else {
@@ -44,4 +44,16 @@ public class ControladorUsuarios {
 
         return modelAndView;
     }
+    public boolean deleteUsuario(String email){
+        usuarioRepository.delete(email);
+
+        return false;
+    }
+
+    public boolean updateEmail(String oldEmail, String newEmail) {
+        usuarioRepository.updateEmail(oldEmail,newEmail);
+        return false;
+
+    }
 }
+

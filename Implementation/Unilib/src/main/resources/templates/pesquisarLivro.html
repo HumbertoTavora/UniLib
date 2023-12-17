@@ -5,36 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unilib Web Test</title>
     <link rel="stylesheet" href="/css/pesquisarLivroStyle.css">
+    <link rel="icon" href="/css/images/universidadeIcon.ico">
 </head>
 <body>
-<div id="container">
-    <div id="listarLivros" class="container-section">
-        <h2>Listar Livros</h2>
-        <div>
-            <button onclick="listarOuOcultarLivros()">Listar Livros</button>
-            <button id="ocultarLivrosBtn" style="display: none;" onclick="toggleListarLivros()">Ocultar Livros</button>
-        </div>
-        <div id="livros-lista"></div>
-    </div>
 
-    <div id="adicionarLivro" class="container-section">
-        <h2>Adicionar Livro</h2>
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" required>
-        <label for="autor">Autor:</label>
-        <input type="text" id="autor" required>
-        <!-- Adicionando novos campos para ISBN, quantidade disponível e palavra-chave -->
-        <label for="ISBN">ISBN:</label>
-        <input type="text" id="ISBN" required>
-        <label for="qtdDisponivel">Quantidade Disponível:</label>
-        <input type="number" id="qtdDisponivel" required>
-        <label for="palavraChave">Palavra-chave:</label>
-        <input type="text" id="palavraChave" required>
-        <!-- Fim dos novos campos -->
-        <button onclick="adicionarLivro()">Adicionar Livro</button>
-    </div>
+<div id="container">
 
     <div id="pesquisarLivro" class="container-section">
+        <img src="/css/images/universidadeEmblem.jpeg" alt="Logo da Universidade" class="logo">
         <h2>Pesquisar Livro</h2>
         <label for="nomeLivro">Nome do Livro:</label>
         <input type="text" id="nomeLivro" required>
@@ -57,11 +35,10 @@
                         '</ul>';
                 });
 
-            // Exibe a seção de ocultar livros
             livrosLista.style.display = 'block';
             ocultarLivrosBtn.style.display = 'block';
         } else {
-            // Oculta a seção de listar livros
+
             livrosLista.innerHTML = '';
             livrosLista.style.display = 'none';
             ocultarLivrosBtn.style.display = 'none';
@@ -79,17 +56,16 @@
         const qtdDisponivel = document.getElementById('qtdDisponivel').value;
         const palavraChave = document.getElementById('palavraChave').value;
 
-        // Criar objeto no formato desejado
+
         const livro = {
-            id: null, // Deixe nulo para o servidor atribuir um ID
+            id: null,
             titulo: titulo,
-            autor: autor.split(',').map(a => a.trim()), // Converte a string em um array de autores
-            palavraChave: palavraChave.split(',').map(pc => pc.trim()), // Converte a string em um array de palavras-chave
+            autor: autor,
+            palavraChave: palavraChave,
             ISBN: ISBN,
-            qtdDisponivel: parseInt(qtdDisponivel), // Converte a quantidade disponível para número
+            qtdDisponivel: parseInt(qtdDisponivel),
         };
 
-        // Enviar a solicitação para o backend
         fetch('/livros', {
             method: 'POST',
             headers: {

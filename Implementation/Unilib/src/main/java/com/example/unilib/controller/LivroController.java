@@ -2,6 +2,8 @@ package com.example.unilib.controller;
 
 import com.example.unilib.model.entity.Livro;
 import com.example.unilib.model.controlador.ControladorLivros;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +27,15 @@ public class LivroController {
         controladorLivros.salvarLivro(livro);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteLivro(@PathVariable long id) {
+        boolean deleted = controladorLivros.deleteUsuario(id);
+        if (deleted) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping("/pesquisarPorNome/{nome}")
     public List<Livro> pesquisarLivrosPorNome(@PathVariable String nome) {

@@ -2,13 +2,21 @@ package com.example.unilib.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Arrays;
+import javax.persistence.*;
 
+import java.util.List;
+
+@Entity
 public class Livro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
     private String titulo;
-    private String[] autor;
-    private String[] palavraChave;
+
+    private String autor;
+
+    private String palavraChave;
 
     @JsonProperty("ISBN")
     private String ISBN;
@@ -18,8 +26,7 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(Long id, String titulo, String[] autor, String[] palavraChave, String ISBN, int qtdDisponivel) {
-        this.id = id;
+    public Livro(String titulo, String autor, String palavraChave, String ISBN, int qtdDisponivel) {
         this.titulo = titulo;
         this.autor = autor;
         this.palavraChave = palavraChave;
@@ -45,19 +52,19 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public String[] getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void setAutor(String[] autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    public String[] getPalavraChave() {
+    public String getPalavraChave() {
         return palavraChave;
     }
 
-    public void setPalavraChave(String[] palavraChave) {
+    public void setPalavraChave(String palavraChave) {
         this.palavraChave = palavraChave;
     }
 
@@ -86,8 +93,8 @@ public class Livro {
         return "Livro{" +
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
-                ", autor=" + Arrays.toString(autor) +
-                ", palavraChave=" + Arrays.toString(palavraChave) +
+                ", autor=" + autor  + '\''  +
+                ", palavraChave=" + palavraChave + '\'' +
                 ", ISBN='" + ISBN + '\'' +
                 ", qtdDisponivel=" + qtdDisponivel +
                 '}';

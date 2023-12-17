@@ -12,11 +12,4 @@ public class UnilibApplication {
     public static void main(String[] args) {
         SpringApplication.run(UnilibApplication.class, args);
     }
-
-    @Bean
-    public ControladorLivros livroService() {
-        ArquivoLivroRepository livroRepository = new ArquivoLivroRepository();
-
-        return new ControladorLivros(livroRepository);
-    }
 }

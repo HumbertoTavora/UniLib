@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="/css/loginStyle.css">
+  <link rel="icon" href="/css/images/universidadeIcon.ico">
 </head>
 <body>
 <div class="container">
+  <img src="/css/images/universidadeEmblem.jpeg" alt="Logo da Universidade" class="logo">
   <h1>Login</h1>
   <p th:if="${error}" class="error-message" th:text="${error}"></p>
   <form action="/login" method="post">

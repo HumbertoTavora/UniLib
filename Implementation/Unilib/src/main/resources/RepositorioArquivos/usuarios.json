@@ -1,1 +1,32 @@
-[{"nome":"Admin","idUniversitario":"admin123","email":"admin@example.com","senha":"admin123"},{"nome":"João Silva","idUniversitario":"joao123","email":"joao.silva@example.com","senha":"senha123"},{"nome":"Maria Rodrigues","idUniversitario":"maria123","email":"maria.rodrigues@example.com","senha":"abcd1234"},{"nome":"Carlos Pereira","idUniversitario":"carlos123","email":"carlos.pereira@example.com","senha":"teste123"},{"nome":"Ana Santos","idUniversitario":"ana123","email":"ana.santos@example.com","senha":"teste456"},{"nome":"Humberto Távora","idUniversitario":"123456","email":"humbertocctg@gmail.com","senha":"admin123"},{"nome":"Humberto Távora","idUniversitario":"7890123","email":"hcct@cin.ufpe.br","senha":"admin123"},{"nome":"Humberto Távora","idUniversitario":"13213123","email":"hcct1@cin.ufpe.br","senha":"admin123"},{"nome":"Humberto Távora","idUniversitario":"123312313","email":"admin1@example.com","senha":"admin123"}]
+[
+  {
+    "nome": "Admin",
+    "idUniversitario": 123456,
+    "email": "admin@example.com",
+    "senha": "admin123"
+  },
+  {
+    "nome": "João Silva",
+    "idUniversitario": 123457,
+    "email": "joao.silva@example.com",
+    "senha": "senha123"
+  },
+  {
+    "nome": "Carlos Pereira",
+    "idUniversitario": 123459,
+    "email": "carlos.pereira@example.com",
+    "senha": "teste123"
+  },
+  {
+    "nome": "Ana Santos",
+    "idUniversitario": 123450,
+    "email": "ana.santos@example.com",
+    "senha": "teste456"
+  },
+  {
+    "nome": "Humberto Távora",
+    "idUniversitario": 123461,
+    "email": "humbertocctg@gmail.com",
+    "senha": "admin123"
+  }
+]

@@ -1,18 +1,23 @@
 package com.example.unilib.model.entity;
 
-import java.util.Objects;
+import javax.persistence.Entity;
 
+import javax.persistence.Id;
+
+import java.util.Objects;
+@Entity
 public class Usuario {
 
     private String nome;
-    private String idUniversitario;
+    @Id
+    private long idUniversitario;
     private String email;
     private String senha;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String idUniversitario, String email, String senha) {
+    public Usuario(String nome, long idUniversitario, String email, String senha) {
         this.nome = nome;
         this.idUniversitario = idUniversitario;
         this.email = email;
@@ -27,11 +32,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getIdUniversitario() {
+    public long getIdUniversitario() {
         return idUniversitario;
     }
 
-    public void setIdUniversitario(String idUniversitario) {
+    public void setIdUniversitario(long idUniversitario) {
         this.idUniversitario = idUniversitario;
     }
 

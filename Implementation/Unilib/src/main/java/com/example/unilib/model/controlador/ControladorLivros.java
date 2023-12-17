@@ -1,8 +1,8 @@
 package com.example.unilib.model.controlador;
 
 import com.example.unilib.model.entity.Livro;
-import com.example.unilib.model.repository.ArquivoLivroRepository;
 import com.example.unilib.model.repository.LivroRepository;
+import com.example.unilib.model.repository.BDRLivroRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class ControladorLivros {
     private final LivroRepository livroRepository;
 
-    public ControladorLivros(ArquivoLivroRepository livroRepository) {
+    public ControladorLivros(LivroRepository livroRepository) {
         this.livroRepository = livroRepository;
     }
 
@@ -27,5 +27,9 @@ public class ControladorLivros {
         List<Livro> livros = livroRepository.pesquisarPorNome(titulo);
         return livros;
     }
+    public boolean deleteUsuario(long id){
+        livroRepository.delete(id);
 
+        return false;
+    }
 }

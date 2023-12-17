@@ -1,7 +1,9 @@
 package com.example.unilib.model.repository;
 
+import com.example.unilib.model.entity.Usuario;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import com.example.unilib.model.entity.Livro;
 
@@ -36,7 +38,7 @@ public class ArquivoLivroRepository implements LivroRepository {
             return Collections.emptyList();
         }
     }
-
+    @Override
     public void salvarLivro(Livro livro) {
         List<Livro> livros = listarLivros();
 
@@ -67,7 +69,7 @@ public class ArquivoLivroRepository implements LivroRepository {
         }
     }
 
-
+    @Override
     public List<Livro> pesquisarPorNome(String nome) {
         try {
             List<Livro> livros = objectMapper.readValue(new File(FILE_PATH), new TypeReference<List<Livro>>() {});
@@ -82,6 +84,18 @@ public class ArquivoLivroRepository implements LivroRepository {
         } catch (IOException e) {
             e.printStackTrace();
             return Collections.emptyList();
+        }
+    }
+    @Override
+    public void delete(long id) {
+        try {
+            List<Livro> livros = objectMapper.readValue(new File(FILE_PATH), new TypeReference<List<Livro>>() {});
+
+            livros.removeIf(livro -> livro.getId().equals(id));
+
+            objectMapper.writeValue(new File(FILE_PATH), livros);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

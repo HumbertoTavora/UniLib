@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
     <link rel="stylesheet" href="/css/cadastroStyle.css">
+    <link rel="icon" href="/css/images/universidadeIcon.ico">
 
 </head>
 <body>
 <div class="container">
+    <img src="/css/images/universidadeEmblem.jpeg" alt="Logo da Universidade" class="logo">
     <h1>Cadastro</h1>
-
     <div th:if="${error}" class="error-message">
         Erro: <span th:text="${error}"></span>
     </div>
