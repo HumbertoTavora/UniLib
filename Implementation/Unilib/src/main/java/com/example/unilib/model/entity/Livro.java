@@ -33,8 +33,14 @@ public class Livro {
         this.ISBN = ISBN;
         this.qtdDisponivel = qtdDisponivel;
     }
-
-    // Getters e Setters
+    private Livro(LivroBuilder builder) {
+        this.id = builder.id;
+        this.titulo = builder.titulo;
+        this.autor = builder.autor;
+        this.palavraChave = builder.palavraChave;
+        this.ISBN = builder.ISBN;
+        this.qtdDisponivel = builder.qtdDisponivel;
+    }
 
     public Long getId() {
         return id;
@@ -98,5 +104,38 @@ public class Livro {
                 ", ISBN='" + ISBN + '\'' +
                 ", qtdDisponivel=" + qtdDisponivel +
                 '}';
+    }
+    public static class LivroBuilder {
+        private final String titulo;
+        private final String autor;
+        private final String ISBN;
+        private int qtdDisponivel;
+        private Long id;
+        private String palavraChave;
+
+        public LivroBuilder(String titulo, String autor, String ISBN) {
+            this.titulo = titulo;
+            this.autor = autor;
+            this.ISBN = ISBN;
+        }
+
+        public LivroBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public LivroBuilder palavraChave(String palavraChave) {
+            this.palavraChave = palavraChave;
+            return this;
+        }
+
+        public LivroBuilder qtdDisponivel(int qtdDisponivel) {
+            this.qtdDisponivel = qtdDisponivel;
+            return this;
+        }
+
+        public Livro build() {
+            return new Livro(this);
+        }
     }
 }

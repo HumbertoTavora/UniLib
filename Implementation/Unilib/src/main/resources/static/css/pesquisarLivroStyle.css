@@ -28,6 +28,18 @@ body {
 h1, h2 {
     color: #b42020;
 }
+.solicitar-btn {
+    background-color: #b42020;
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
 
 button {
     background-color: #b42020;

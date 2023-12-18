@@ -17,7 +17,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nome, long idUniversitario, String email, String senha) {
+    private Usuario(String nome, long idUniversitario, String email, String senha) {
         this.nome = nome;
         this.idUniversitario = idUniversitario;
         this.email = email;
@@ -66,5 +66,35 @@ public class Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(idUniversitario);
+    }
+    public static class UsuarioBuilder {
+        private String nome;
+        private long idUniversitario;
+        private String email;
+        private String senha;
+
+        public UsuarioBuilder nome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public UsuarioBuilder idUniversitario(long idUniversitario) {
+            this.idUniversitario = idUniversitario;
+            return this;
+        }
+
+        public UsuarioBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public UsuarioBuilder senha(String senha) {
+            this.senha = senha;
+            return this;
+        }
+
+        public Usuario build() {
+            return new Usuario(nome, idUniversitario, email, senha);
+        }
     }
 }

@@ -31,7 +31,8 @@
                 .then(response => response.json())
                 .then(data => {
                     livrosLista.innerHTML = '<ul>' +
-                        data.map(livro => `<li>${livro.titulo} - ${livro.autor} - ISBN: ${livro.isbn} - Disponível: ${livro.qtdDisponivel}</li>`).join('') +
+                        data.map(livro => `<li>${livro.titulo} - ${livro.autor} - ISBN: ${livro.isbn} - Disponível: ${livro.qtdDisponivel}
+                        </li>`).join('') +
                         '</ul>';
                 });
 
@@ -89,7 +90,7 @@
             .then(data => {
                 const livrosPorNome = document.getElementById('livros-por-nome');
                 livrosPorNome.innerHTML = '<ul>' +
-                    data.map(livro => `<li>${livro.titulo} - ${livro.autor} - Disponível: ${livro.qtdDisponivel}</li>`).join('') +
+                    data.map(livro => `<li>${livro.titulo} - ${livro.autor} - Disponível: ${livro.qtdDisponivel}<button class="solicitar-btn" >Solicitar Empréstimo</button></li>`).join('') +
                     '</ul>';
             });
     }
