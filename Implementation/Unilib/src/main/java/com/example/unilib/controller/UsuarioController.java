@@ -1,6 +1,6 @@
 package com.example.unilib.controller;
 
-import com.example.unilib.model.controlador.ControladorUsuarios;
+import com.example.unilib.model.fachada.Fachada;
 import com.example.unilib.model.entity.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,9 @@ import java.util.Optional;
 @Controller
 public class UsuarioController {
 
-    private final ControladorUsuarios controladorUsuarios;
-    public UsuarioController(ControladorUsuarios controladorUsuarios) {
-        this.controladorUsuarios = controladorUsuarios;
+    private final Fachada fachada;
+    public UsuarioController(Fachada fachada) {
+        this.fachada = fachada;
     }
     @GetMapping("/login")
     public String exibirPaginaCadastro() {
@@ -25,7 +25,7 @@ public class UsuarioController {
     }
     @PostMapping("/login")
     public ModelAndView loginPost(String email, String password) {
-        return controladorUsuarios.loginPost(email, password);
+        return fachada.loginPost(email, password);
     }
     @GetMapping("/cadastro")
     public String exibirPaginaCadastro(Model model) {
@@ -34,12 +34,12 @@ public class UsuarioController {
     }
     @PostMapping("/cadastro")
     public ModelAndView cadastrarUsuario(Usuario usuario) {
-        return controladorUsuarios.cadastrarUsuario(usuario);
+        return fachada.cadastrarUsuario(usuario);
     }
 
     @DeleteMapping("/delete/{email}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable String email) {
-        boolean deleted = controladorUsuarios.deleteUsuario(email);
+        boolean deleted = fachada.deleteUsuario(email);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
@@ -48,7 +48,7 @@ public class UsuarioController {
     }
     @PutMapping("/update/{oldEmail}/{newEmail}")
     public ResponseEntity<Void> updateEmail(@PathVariable String oldEmail, @PathVariable String newEmail) {
-        boolean updated = controladorUsuarios.updateEmail(oldEmail, newEmail);
+        boolean updated = fachada.updateEmail(oldEmail, newEmail);
         if (updated) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {

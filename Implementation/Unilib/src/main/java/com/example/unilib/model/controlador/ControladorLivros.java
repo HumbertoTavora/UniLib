@@ -27,9 +27,8 @@ public class ControladorLivros {
         List<Livro> livros = livroRepository.pesquisarPorNome(titulo);
         return livros;
     }
-    public boolean deleteUsuario(long id){
+    public boolean deleteLivro(long id){
         livroRepository.delete(id);
-
         return false;
     }
 }

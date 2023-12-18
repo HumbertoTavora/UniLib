@@ -49,7 +49,6 @@ public class ControladorUsuarios {
 
         return false;
     }
-
     public boolean updateEmail(String oldEmail, String newEmail) {
         usuarioRepository.updateEmail(oldEmail,newEmail);
         return false;
