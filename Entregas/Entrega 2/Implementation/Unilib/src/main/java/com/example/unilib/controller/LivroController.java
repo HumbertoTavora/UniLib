@@ -36,7 +36,6 @@ public class LivroController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @GetMapping("/pesquisarPorNome/{nome}")
     public List<Livro> pesquisarLivrosPorNome(@PathVariable String nome) {
         return fachada.pesquisarLivrosPorNome(nome);

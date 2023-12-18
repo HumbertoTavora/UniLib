@@ -14,6 +14,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Repository
+@Primary
 public class ArquivoLivroRepository implements LivroRepository {
     private static final String FILE_PATH = "src/main/resources/RepositorioArquivos/livros.json";
 
