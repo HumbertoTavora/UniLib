@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/css/cadastroStyle.css">
+    <link rel="icon" href="/css/images/universidadeIcon.ico">
+
+</head>
+<body>
+<div class="container">
+    <img src="/css/images/universidadeEmblem.jpeg" alt="Logo da Universidade" class="logo">
+    <h1>Cadastro</h1>
+    <div th:if="${error}" class="error-message">
+        Erro: <span th:text="${error}"></span>
+    </div>
+    <div th:if="${success}" class="success-message">
+        Sucesso: <span th:text="${success}"></span>
+    </div>
+
+    <form th:action="@{/user/cadastro}" th:object="${usuario}" method="post">
+        <label for="email">Email Universitário:</label>
+        <input type="text" id="email" name="email" th:field="*{email}" required>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" th:field="*{senha}" required>
+
+        <label for="idUniversitario">ID Universitário:</label>
+        <input type="text" id="idUniversitario" name="idUniversitario" th:field="*{idUniversitario}" required>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" th:field="*{nome}" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p>Já possui uma conta? <a th:href="@{/user/login}">Faça login aqui</a></p>
+</div>
+</body>
+</html>

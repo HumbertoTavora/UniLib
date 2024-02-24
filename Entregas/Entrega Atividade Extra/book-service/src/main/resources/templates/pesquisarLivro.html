@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilib</title>
+    <link rel="stylesheet" href="/css/pesquisarLivroStyle.css">
+    <link rel="icon" href="/css/images/universidadeIcon.ico">
+</head>
+<body>
+
+<div id="container">
+
+    <div id="pesquisarLivro" class="container-section">
+        <img src="/css/images/universidadeEmblem.jpeg" alt="Logo da Universidade" class="logo">
+        <h2>Pesquisar Livro</h2>
+        <label for="nomeLivro">Nome do Livro:</label>
+        <input type="text" id="nomeLivro" required>
+        <button onclick="pesquisarLivroPorNome()">Pesquisar Livro</button>
+        <div id="livros-por-nome"></div>
+    </div>
+</div>
+
+<script>
+    function toggleListarLivros() {
+        const livrosLista = document.getElementById('livros-lista');
+        const ocultarLivrosBtn = document.getElementById('ocultarLivrosBtn');
+
+        if (livrosLista.style.display === 'none' || livrosLista.innerHTML === '') {
+            fetch('/livros')
+                .then(response => response.json())
+                .then(data => {
+                    livrosLista.innerHTML = '<ul>' +
+                        data.map(livro => `<li>${livro.titulo} - ${livro.autor} - ISBN: ${livro.isbn} - Disponível: ${livro.qtdDisponivel}
+                        </li>`).join('') +
+                        '</ul>';
+                });
+
+            livrosLista.style.display = 'block';
+            ocultarLivrosBtn.style.display = 'block';
+        } else {
+
+            livrosLista.innerHTML = '';
+            livrosLista.style.display = 'none';
+            ocultarLivrosBtn.style.display = 'none';
+        }
+    }
+
+    function listarOuOcultarLivros() {
+        toggleListarLivros();
+    }
+
+    function adicionarLivro() {
+        const titulo = document.getElementById('titulo').value;
+        const autor = document.getElementById('autor').value;
+        const ISBN = document.getElementById('ISBN').value;
+        const qtdDisponivel = document.getElementById('qtdDisponivel').value;
+        const palavraChave = document.getElementById('palavraChave').value;
+
+
+        const livro = {
+            id: null,
+            titulo: titulo,
+            autor: autor,
+            palavraChave: palavraChave,
+            ISBN: ISBN,
+            qtdDisponivel: parseInt(qtdDisponivel),
+        };
+
+        fetch('/livros', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(livro),
+        })
+            .then(() => {
+                const livrosLista = document.getElementById('livros-lista');
+                if (livrosLista.style.display === 'block') {
+                    toggleListarLivros();
+                }
+            });
+    }
+
+    function pesquisarLivroPorNome() {
+        const nomeLivro = document.getElementById('nomeLivro').value;
+
+        fetch(`/books/pesquisarPorNome/${nomeLivro}`)
+            .then(response => response.json())
+            .then(data => {
+                const livrosPorNome = document.getElementById('livros-por-nome');
+                livrosPorNome.innerHTML = '<ul>' +
+                    data.map(livro => `<li>${livro.titulo} - ${livro.autor} - Disponível: ${livro.qtdDisponivel}<button class="solicitar-btn" >Solicitar Empréstimo</button></li>`).join('') +
+                    '</ul>';
+            });
+    }
+</script>
+</body>
+</html>

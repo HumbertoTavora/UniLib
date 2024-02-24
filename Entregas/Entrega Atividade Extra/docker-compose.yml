@@ -1,0 +1,24 @@
+version: '3'
+services:
+  discoveryserver:
+    build:
+      context: ./discoveryserver/
+    ports:
+      - "8761:8761"
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "8083:8083"
+    depends_on:
+      - discoveryserver
+  user-service:
+    build:
+      context: ./user-service/
+    depends_on:
+      - discoveryserver
+  book-service:
+    build:
+      context: ./book-service/
+    depends_on:
+      - discoveryserver
