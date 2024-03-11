@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/loginStyle.css">
+  <link rel="icon" href="/css/images/universidadeIcon.ico">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+<div class="container">
+  <img src="/css/images/universidadeEmblem.jpeg" alt="Logo da Universidade" class="logo">
+  <h1>Login</h1>
+  <p th:if="${error}" class="error-message" th:text="${error}"></p>
+  <form action="/login" method="post">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">Login</button>
+  </form>
+  <div id="buttonDiv" class="g_id_signin" data-client_id="YOUR_CLIENT_ID"></div>
+  <p>Ainda não possui uma conta?
+    <a href="/cadastro">Cadastrar novo usuário</a>
+  </p>
+</div>
+<script>
+  function handleCredentialResponse(response) {
+    var id_token = response.credential;
+    fetch('/googleSignIn', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ idToken: id_token })
+    })
+            .then(response => response.json())
+            .then(data => {
+              if (data.isUserRegistered) {
+                // O usuário está cadastrado no sistema, redirecionar para a página desejada
+                window.location.href = "http://localhost:8080/pesquisarLivro";
+              } else {
+                // O usuário não está cadastrado no sistema, mostrar uma mensagem de erro
+                alert('Usuário não está cadastrado no sistema.');
+              }
+            });
+  }
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: '291288604194-g7fphlakarfaj9t0qjroli77kb2uvr06.apps.googleusercontent.com',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+            document.getElementById('buttonDiv'),
+            {theme: 'outline', size: 'large'}
+    );
+    google.accounts.id.prompt();
+  };
+</script>
+</body>
+</html>
