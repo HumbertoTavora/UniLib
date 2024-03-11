@@ -1,0 +1,28 @@
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+server:
+    port: 8083
+spring:
+    application:
+      name: gateway
+    cloud:
+      gateway:
+        routes:
+          - id: user
+            uri: http://localhost:8081
+            predicates:
+              - Path=/user/**
+          - id: static-resources-user-service
+            uri: http://localhost:8081
+            predicates:
+              - Path=/css/**,/js/**,/images/**
+          - id: books
+            uri: http://localhost:8082
+            predicates:
+              - Path=/books/**
+          - id: static-resources-books-service
+            uri: http://localhost:8082
+            predicates:
+              - Path=/css/**,/js/**,/images/**  # Padrões de caminho para recursos estáticos

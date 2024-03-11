@@ -1,0 +1,80 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.container-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    width: 400px;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    color: #b42020;
+}
+.solicitar-btn {
+    background-color: #b42020;
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #b42020;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+label {
+    margin-right: 8px;
+}
+
+input {
+    margin-bottom: 8px;
+    padding: 8px;
+    width: calc(100% - 16px);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+.logo {
+    max-width: 90%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+
+li {
+    margin-bottom: 8px;
+}
+
+#livro-info {
+    margin-top: 20px;
+}
